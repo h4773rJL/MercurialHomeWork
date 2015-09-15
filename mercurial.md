@@ -20,6 +20,7 @@ El proyecto Linux decidió usar **Git** en lugar de **Mercurial**. Sin embargo, 
 
 ## Características 
 
+
 ## Ejemplos de uso
 desde la consola de comandos ejecutar hg
 
@@ -65,7 +66,67 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 ```
 
-Mercurial necesitará un nombre-de-usuario para grabar los **commits**. Lo mejor es configurar Mercurial con tu correo electrónico lo cual creará el archivo .ghrc1 en tu directorio home 
+Mercurial necesitará un nombre-de-usuario para grabar los **commits**. Lo mejor es configurar Mercurial con tu correo electrónico lo cual creará el archivo .ghrc1 en tu directorio home el cual debe contener lineas como las siguientes 
+
+```
+[ui]
+username = Juan Perez <jperez@example.com>
+```
+
+#### Tutoria - Inicializando un Repositorio
+En Mercurial, hacemos todo el trabajo dentro de un repositorio. Un repositorio es un directorio que contiene todos los archivos fuente de los cuales que queremos mantener su historial de cambios. 
+
+A diferencia de algunos sistemas de control de versiones, usted puede crear un repositorio en cualquier directorio que usted tenga permisos de escritura, todo lo que usted necesita hacer es inicializar el repositorio, lo que creará un directorio llamado `.hg` y añadir archivos al repositorio.
+
+para esto, se usa el comando **init**
+
+Hagamos un pequeño repositorio par aun "Hola Mundo" en nuestro sistema de archivos.
+
+```
+h4773r@linux-x30m:~/repos/hola> hg init 
+h4773r@linux-x30m:~/repos/hola> ls -la
+total 0
+drwxr-xr-x 1 h4773r users  6 sep 14 20:14 .
+drwxr-xr-x 1 h4773r users 42 sep 14 20:13 ..
+drwxr-xr-x 1 h4773r users 52 sep 14 20:14 .hg
+h4773r@linux-x30m:~/repos/hola> 
+
+
+```
+Ahora podemos ver que se creo el directorio .hg en nuestro nuevo repositorio.
+
+
+Ahora agregaremos algunos archivos a Mercurial. En este ejemplo crearemos el archivo después de haber inicializado el repositorio, esto no es importante en mercurial, una de las grandes cosas de mercurial es la facilidad de inicializar un repositorio y posteriormente agregar control de versiones a una estructura de directorios existente, en nuestro caso, solo usaremos `hg add` para agregar los archivos bajo el control de versiones.
+
+
+
+```
+h4773r@linux-x30m:~/repos/hola> touch hello.txt
+h4773r@linux-x30m:~/repos/hola> ls -la
+total 0
+drwxr-xr-x 1 h4773r users 24 sep 14 20:15 .
+drwxr-xr-x 1 h4773r users 42 sep 14 20:13 ..
+-rw-r--r-- 1 h4773r users  0 sep 14 20:15 hello.txt
+drwxr-xr-x 1 h4773r users 52 sep 14 20:14 .hg
+h4773r@linux-x30m:~/repos/hola> hg add hello.txt
+
+
+```
+Después de agregar el archivo, este no se encuentra realmente en mercurial, para ello debemos hacer un **commit** de el
+
+```
+h4773r@linux-x30m:~/repos/hola> hg commit -m "adding initial version of hello.txt"
+h4773r@linux-x30m:~/repos/hola> ls -a
+.  ..  hello.txt  .hg
+h4773r@linux-x30m:~/repos/hola>
+
+```
+Nada obvio cambio sobre los archivos, pero ahora que se realizó el **commit** esta versión de nuestro arhivo sera preservado en el repositorio.
+
+Una forma común de usar mercurial, es clonar un repositorio existente que alguien mas haya credo.
+ 
+
+#### Clonar un repositorio
 
 
 
